@@ -1,0 +1,29 @@
+/* .student-row {
+  background-color: grey;
+  color: white;
+  margin: 20px 0;
+} */
+
+.list-container {
+  width: 800px;
+  margin: 30px auto;
+}
+
+.search-bar-container {
+  float: right;
+}
+
+.reset-button {
+  cursor: pointer;
+}
+.reset-button:hover {
+  background-color: grey;
+  color: white;
+}
+.teacher {
+  margin-top: 70px;
+}
+
+a {
+  text-decoration: none !important;
+}
