@@ -17,11 +17,12 @@ const StudentList = () => {
     allStudents: [],
     studentLoading: false,
     headingArray: [
-      'Student Name',
-      'DOB',
-      'Gender',
-      'Phone Number',
-      'Roll Number',
+      'User_name',
+      'email_id',
+      'Role',
+      'contact Number',
+      'User_id',
+      'password',
     ],
   });
 
@@ -40,41 +41,41 @@ const StudentList = () => {
       // ** first we create empty object then we filter each studernt on the base of roll number and store it in attendanceObj
       const attendenceObj = {};
       stdList.forEach((std) => {
-        attendenceObj[std.rollNo] = '';
+        attendenceObj[std.user_id] = '';
       });
       console.log(attendenceObj);
       setAttendence(attendenceObj);
     });
   }, []);
 
-  const onDeleteHandler = (rollNo) => {
+  const onDeleteHandler = (user_id) => {
     let reformedStudentList = [...state.studentList];
     reformedStudentList = reformedStudentList.filter((student) => {
-      return student.rollNo != rollNo;
+      return student.user_id != user_id;
     });
     setState({ ...state, studentList: reformedStudentList });
   };
-  const getMaximumRollNo = () => {
+  const getMaximumuser_id = () => {
     let maximum = 0;
 
     for (let i = 0; i < state.studentList.length; i++) {
       const student = state.studentList[i];
-      if (student.rollNo > maximum) {
-        maximum = student.rollNo;
+      if (student.user_id > maximum) {
+        maximum = student.user_id;
       }
     }
     return maximum;
   };
   const addNewStudent = () => {
-    let maximumRollNumber = getMaximumRollNo();
-    let newStudentRollNo = maximumRollNumber + 1;
+    let maximumRollNumber = getMaximumuser_id();
+    let newStudentuser_id = maximumRollNumber + 1;
     let newStudentList = [...state.studentList];
     newStudentList.push({
       name: 'Umer',
       DOB: 'Akram',
       section: '2',
       phone: '03224563212',
-      rollNo: newStudentRollNo,
+      user_id: newStudentuser_id,
     });
     setState({ ...state, studentList: newStudentList });
   };
@@ -150,15 +151,15 @@ const StudentList = () => {
           link={{
             to: '/students/details',
           }}
-          uniqueTrait='rollNo'
+          uniqueTrait='user_id'
           onDeleteHandler={onDeleteHandler}
           addNewStudent={addNewStudent}
-          renderActions={(rollNo) => {
+          renderActions={(user_id) => {
             return (
               <>
                 {/* <ButtonGroup aria-label='Basic example'> */}
                 {/* if one has already marked attendence then it will show as present or absent otherwise button will be shown */}
-                {attendence[rollNo] === 'present' ? (
+                {attendence[user_id] === 'present' ? (
                   <Badge bg='success' text='light'>
                     Present
                   </Badge>
@@ -169,7 +170,7 @@ const StudentList = () => {
                       setAttendence({
                         ...attendence,
                         // there we do not want to change the whole attendance list that was in attendanceObj we only want to change that is clicked
-                        [rollNo]: 'present',
+                        [user_id]: 'present',
                       });
                     }}
                     variant='primary'
@@ -177,7 +178,7 @@ const StudentList = () => {
                     Present
                   </Button>
                 )}
-                {attendence[rollNo] === 'absent' ? (
+                {attendence[user_id] === 'absent' ? (
                   <Badge bg='warning' text='dark'>
                     Absent
                   </Badge>
@@ -187,7 +188,7 @@ const StudentList = () => {
                     onClick={() => {
                       setAttendence({
                         ...attendence,
-                        [rollNo]: 'absent',
+                        [user_id]: 'absent',
                       });
                     }}
                     variant='secondary'
@@ -198,7 +199,7 @@ const StudentList = () => {
 
 
 
-                {result[rollNo] === 'pass' ? (
+                {result[user_id] === 'pass' ? (
                   <Badge bg='success' text='light'>
                     pass
                   </Badge>
@@ -209,7 +210,7 @@ const StudentList = () => {
                       setResult({
                         ...result,
                         // there we do not want to change the whole attendance list that was in attendanceObj we only want to change that is clicked
-                        [rollNo]: 'pass',
+                        [user_id]: 'pass',
                       });
                     }}
                     variant='primary'
@@ -217,7 +218,7 @@ const StudentList = () => {
                     Pass
                   </Button>
                 )}
-                {result[rollNo] === 'fail' ? (
+                {result[user_id] === 'fail' ? (
                   <Badge bg='warning' text='dark'>
                     Fail
                   </Badge>
@@ -227,7 +228,7 @@ const StudentList = () => {
                     onClick={() => {
                       setResult({
                         ...result,
-                        [rollNo]: 'fail',
+                        [user_id]: 'fail',
                       });
                     }}
                     variant='secondary'

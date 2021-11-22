@@ -6,7 +6,7 @@ import { checkValidity } from '../../../utility';
 export default function AddStudentForm(props) {
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
-    fullName: {
+    user_name: {
       value: '',
       valid: undefined,
       rules: {
@@ -14,7 +14,7 @@ export default function AddStudentForm(props) {
         minLength: 3,
       },
     },
-    DOB: {
+    email_id: {
       value: '',
       valid: undefined,
       rules: {
@@ -22,7 +22,7 @@ export default function AddStudentForm(props) {
         minLength: 3,
       },
     },
-    rollNumber: {
+    user_id: {
       value: '',
       valid: undefined,
       rules: {
@@ -30,7 +30,7 @@ export default function AddStudentForm(props) {
         minLength: 3,
       },
     },
-    section: {
+    role: {
       value: '',
       valid: undefined,
       rules: {
@@ -38,7 +38,7 @@ export default function AddStudentForm(props) {
         isNumeric: true,
       },
     },
-    phoneNumber: {
+    contact_no: {
       value: '',
       valid: undefined,
       rules: {
@@ -46,6 +46,16 @@ export default function AddStudentForm(props) {
         isNumeric: true,
       },
     },
+    password: {
+      value: '',
+      valid: undefined,
+      rules: {
+        required: true,
+        minLength: 8,
+
+      },
+      
+    }, 
   });
 
   const onChangeHandler = (e, formKey) => {
@@ -64,11 +74,12 @@ export default function AddStudentForm(props) {
     try {
       setLoading(true);
       const newStudentList = await addStudent({
-        name: state.fullName.value,
-        DOB: state.DOB.value,
-        section: state.section.value,
-        phone: state.phoneNumber.value,
-        rollNo: state.rollNumber.value,
+        name: state.user_name.value,
+        email_id: state.email_id.value,
+        role: state.role.value,
+        phone: state.contact_no.value,
+        rollNo: state.user_id.value,
+        password: state.password.value,
       });
       setLoading(false);
       props.onAdd(newStudentList);
@@ -81,50 +92,57 @@ export default function AddStudentForm(props) {
   return (
     <Form>
       <Form.Group className='mb-3' controlId='formBasicEmail'>
-        <Form.Label className='mt-2'>Full Name</Form.Label>
+        <Form.Label className='mt-2'>User Name</Form.Label>
         <Form.Control
-          value={state.fullName.value}
-          isValid={state.fullName.valid}
-          name='fullname'
-          onChange={(e) => onChangeHandler(e, 'fullName')}
-          placeholder='Enter full name'
+          value={state.user_name.value}
+          isValid={state.user_name.valid}
+          name='user_name'
+          onChange={(e) => onChangeHandler(e, 'user_name')}
+          placeholder='Enter user name'
         />
-        <Form.Label className='mt-2'>Date of Birth</Form.Label>
+        <Form.Label className='mt-2'>email id</Form.Label>
         <Form.Control
-          value={state.DOB.value}
-          isValid={state.DOB.valid}
-          name='DOB'
-          onChange={(e) => onChangeHandler(e, 'DOB')}
-          placeholder='Enter DOB'
+          value={state.email_id.value}
+          isValid={state.email_id.valid}
+          name='email_id'
+          onChange={(e) => onChangeHandler(e, 'email_id')}
+          placeholder='Enter email_id'
         />
          <Form.Select
-          value={state.section.value}
-          isValid={state.section.valid}
-          onChange={(e) => onChangeHandler(e, 'section')}
-          name='section'
+          value={state.role.value}
+          isValid={state.role.valid}
+          onChange={(e) => onChangeHandler(e, 'role')}
+          name='role'
           className='mt-2'
           aria-label='Default select example'
         >
-          <option>Select Gender</option>
-          <option value='Male'>Male</option>
-          <option value='Female'>Female</option>
-          <option value='Others'>Others</option>
+          <option>Select Role</option>
+          <option value='Admin'>Admin</option>
+          <option value='Student'>Student</option>
         </Form.Select>
-        <Form.Label className='mt-2'>Phone Number</Form.Label>
+        <Form.Label className='mt-2'>Contact Number</Form.Label>
         <Form.Control
-          value={state.phoneNumber.value}
-          isValid={state.phoneNumber.valid}
+          value={state.contact_no.value}
+          isValid={state.contact_no.valid}
           name='phno'
-          onChange={(e) => onChangeHandler(e, 'phoneNumber')}
-          placeholder='Enter phone number'
+          onChange={(e) => onChangeHandler(e, 'contact_no')}
+          placeholder='Enter Contact number'
         />
-        <Form.Label className='mt-2'>Roll Number</Form.Label>
+        <Form.Label className='mt-2'>User ID</Form.Label>
         <Form.Control
-          value={state.rollNumber.value}
-          isValid={state.rollNumber.valid}
+          value={state.user_id.value}
+          isValid={state.user_id.valid}
           name='rno'
-          onChange={(e) => onChangeHandler(e, 'rollNumber')}
-          placeholder='Enter roll number'
+          onChange={(e) => onChangeHandler(e, 'user_id')}
+          placeholder='Enter user id'
+        />
+        <Form.Label className='mt-2'>Password</Form.Label>
+        <Form.Control
+          value={state.password.value}
+          isValid={state.password.valid}
+          name='password'
+          onChange={(e) => onChangeHandler(e, 'password')}
+          placeholder='Enter password'
         />
      
        

@@ -16,10 +16,6 @@ function RequireAuth({ children }) {
   console.log(user);
   if (!user) {
     console.log('here');
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
     return (
       <Redirect
         to={{
@@ -52,7 +48,7 @@ const App = () => {
     return (
 
       <>
-        <section className="hero-section">
+        <section className="hero-section" text-allign= "center">
           <p>Welcome to </p>
           <h2>Student Performance Management System</h2>
         </section>

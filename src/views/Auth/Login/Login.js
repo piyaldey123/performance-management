@@ -84,7 +84,7 @@ export default function Login({ onLogin }) {
     <Container>
       <Row className='justify-content-center'>
         <Col xs={12} md={6} lg={6} xl={4}>
-          <Form className='border p-4 mt-4 rounded shadow-sm bg-white'>
+          <Form className='border p-2 mt-4 rounded shadow-sm bg-white'>
             <Form.Group className='mb-3' controlId='formBasicEmail'>
               <Form.Label>Username</Form.Label>
               <Form.Control

@@ -14,10 +14,10 @@ export const getStudents = (students) => {
   });
 };
 
-export const getStudentByRollNo = (rollNo) => {
+export const getStudentByuser_id = (user_id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(studentsList.find((student) => student.rollNo == rollNo));
+      resolve(studentsList.find((student) => student.user_id == user_id));
     }, 2000);
   });
 };
@@ -49,9 +49,7 @@ export const getTeacherByEmail = (email) => {
   });
 };
 
-export const addTeacher = async (teacher) => {
-  return await getTeachers([...teacherList, teacher], 2000);
-};
+
 
 const users = [
 ];

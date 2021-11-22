@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getStudentByRollNo } from '../../../api/fakeapi';
+import { getStudentByuser_id } from '../../../api/fakeapi';
 import StudendDetailsReport from '../../../components/student/StudentDetailsReport/StudentDetailsReport';
 
 export default function StudentDetails() {
-  const { rollNo } = useParams();
+  const { user_id } = useParams();
 
   const [student, setStudent] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (rollNo) {
+    if (user_id) {
       setLoading(true);
-      getStudentByRollNo(rollNo)
+      getStudentByuser_id(user_id)
         .then((student) => {
           setStudent(student);
           setLoading(false);
         })
         .catch((err) => {
-          console.log('get student by roll no', rollNo);
+          console.log('get student by user id', user_id);
           setLoading(false);
         });
     }
-  }, [rollNo]);
+  }, [user_id]);
 
   return (
     <div>
